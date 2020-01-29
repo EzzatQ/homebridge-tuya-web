@@ -137,6 +137,10 @@ class TuyaWebPlatform {
         deviceAccessory = new OutletAccessory(this, homebridgeAccessory, device);
         this.accessories.set(uuid, deviceAccessory.homebridgeAccessory);
         break;
+      case 'cover':
+        deviceAccessory = new CoverAccessory(this, homebridgeAccessory, device);
+        this.accessories.set(uuid, deviceAccessory.homebridgeAccessory);
+        break;
       default:
         this.log.warn('Could not init class for device type [%s]', deviceType);
         break;
@@ -157,6 +161,7 @@ class TuyaWebPlatform {
 
     // Set the accessory to reachable if plugin can currently process the accessory,
     // otherwise set to false and update the reachability later by invoking 
+    // otherwise set to false and update the reachability later by invoking
     // accessory.updateReachability()
     accessory.reachable = true;
 
